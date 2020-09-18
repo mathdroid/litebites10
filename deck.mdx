@@ -1,24 +1,56 @@
-import { Head, Notes } from 'mdx-deck'
-import { theme } from './theme'
+import { Head, Notes, themes, Footer } from "mdx-deck";
 
-export const themes = [ theme ]
+import image0 from "./assets/0.png";
+
+export const theme = {
+  ...themes.default,
+  colors: {
+    ...themes.default.colors,
+    primary: "#F9B100",
+    background: "#202E3E",
+  },
+};
 
 <Head>
-  <title>Presentation Title</title>
+  <title>LiteBites 10: Beginner's Guide to ReactJS</title>
 </Head>
 
-# Hello
+<Footer>
+  <footer
+    style={{
+      position: "fixed",
+      bottom: 0,
+      left: 0,
+      right: 0,
+      width: "100vw",
+      backgroundColor: "#F9B100",
+      color: "#202E3E",
+    }}
+  >
+    LiteBites 10: Beginner's Guide to ReactJS
+  </footer>
+</Footer>
+
+# LiteBites 10
+
+## Beginner's Guide to ReactJS
+
+>
+
+>
+
+<code>(Press spacebar to continue)</code>
 
 ---
 
-## Edit this file
-
-To create your presentation
-
-<Notes>
-Create speaker notes with the Notes component
-</Notes>
+## Intro
 
 ---
 
-<https://github.com/jxnblk/mdx-deck>
+# About me
+
+<img src={image0} />
+
+---
+
+<https://github.com/mathdroid>

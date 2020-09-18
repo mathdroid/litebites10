@@ -5,9 +5,18 @@
   "scripts": {
     "start": "mdx-deck deck.mdx",
     "build": "mdx-deck build deck.mdx",
-    "help": "mdx-deck"
+    "help": "mdx-deck",
+    "demo": "npx serve demo"
   },
   "devDependencies": {
     "mdx-deck": "^4.1.1"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.35",
+    "@emotion/styled": "^10.0.27",
+    "code-surfer": "^3.1.1",
+    "emotion-theming": "^10.0.27",
+    "mdx-deck-live-code": "^1.0.1",
+    "styled-components": "^5.2.0"
   }
 }

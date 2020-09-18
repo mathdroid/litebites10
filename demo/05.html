@@ -1,0 +1,32 @@
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.13.1/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    const rootElement = document.getElementById("root");
+
+    function UserGreeting(props) {
+      return <h1>Welcome back!</h1>;
+    }
+
+    function GuestGreeting(props) {
+      return <h1>Please sign up.</h1>;
+    }
+
+    function Greeting(props) {
+      const isLoggedIn = props.isLoggedIn;
+      if (isLoggedIn) {
+        return <UserGreeting />;
+      }
+      return <GuestGreeting />;
+    }
+
+    // change to true
+    const isLoggedIn = false;
+
+    const element = <Greeting isLoggedIn={isLoggedIn} />;
+
+    ReactDOM.render(element, rootElement);
+  </script>
+</body>

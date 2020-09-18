@@ -1,0 +1,73 @@
+<head>
+  <link rel="stylesheet" href="reset.css" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.13.1/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    const rootElement = document.getElementById("root");
+
+    function Home() {
+      const [photos, setPhotos] = React.useState([]);
+      const [isLoaded, setIsLoaded] = React.useState(false);
+      const [error, setError] = React.useState(null);
+      React.useEffect(() => {
+        fetch(
+          "https://api.gfycat.com/v1/gfycats/search?search_text=space&count=20"
+        )
+          .then((res) => res.json())
+          .then(
+            (result) => {
+              // console.log({ result });
+              setIsLoaded(true);
+              setPhotos(
+                result.gfycats
+                  .filter((i) => i.nsfw === "0")
+                  .map(({ gfyName, width, height }) => ({
+                    id: gfyName,
+                    width,
+                    height,
+                  }))
+              );
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+              setIsLoaded(true);
+              setError(error);
+            }
+          );
+      }, []);
+      return (
+        <main className="container">
+          <div>
+            <h1>ReactGram</h1>
+          </div>
+          <div className="images">
+            {photos.map(({ id, width, height }) => (
+              <div key={id} className="imageContainer">
+                <div key={id} className="image">
+                  <a>
+                    <div className="imageWrapper">
+                      <img
+                        width={width}
+                        height={height}
+                        src={`https://thumbs.gfycat.com/${id}-mobile.jpg`}
+                      />
+                    </div>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </main>
+      );
+    }
+
+    ReactDOM.render(<Home />, rootElement);
+  </script>
+</body>

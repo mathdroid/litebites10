@@ -1,13 +1,20 @@
-import { Head, Notes, themes, Footer } from "mdx-deck";
+import { Component, useState } from "react";
+import { Head, Notes, themes, Footer, Steps, SplitRight } from "mdx-deck";
+import { CodeSurfer, CodeSurferColumns, Step } from "code-surfer";
+import { vsDark } from "@code-surfer/themes";
+
+import MyComponent from "./MyComponent";
 
 import image0 from "./assets/0.png";
+import image2 from "./assets/02.png";
+import image4 from "./assets/04.png";
 
 export const theme = {
-  ...themes.default,
+  ...themes.dark,
   colors: {
-    ...themes.default.colors,
+    ...themes.dark.colors,
     primary: "#F9B100",
-    background: "#202E3E",
+    background: "#16161D",
   },
 };
 
@@ -43,14 +50,843 @@ export const theme = {
 
 ---
 
-## Intro
+# Intro
 
 ---
 
 # About me
 
+- mathdroid
+
+  - Twitter
+  - github
+  - Instagram, etc
+
+- Muhammad Mustadi
+- <https://github.com/mathdroid>
+
 <img src={image0} />
 
 ---
 
-<https://github.com/mathdroid>
+# Previous appearances
+
+- Surabaya JS: Next v Nuxt v Sapper (link)
+
+- Imre's podcast (link)
+
+- etc
+
+---
+
+# Experience
+
+- Sale Stock (2015), Xendit (2016), Qlue (2018)
+
+- Projects
+  - https://trf.money
+  - https://pinjollist.now.sh
+  - etc
+
+---
+
+# What this talk is
+
+- ✅ React Fundamentals
+- ✅ Your first React App
+- ✅ Functional vs Class components, Props vs State, connecting to API
+
+- ⛔ HTML/CSS/JS Tutorial (rewind a bit)
+- ⛔ Advanced usage
+
+---
+
+# Prerequisites
+
+- ✅ Basic language knowledge, or code reading proficiency
+
+- 💡 A device where you can type code (preferably a computer)
+- 💡 A browser
+
+- ⛔ Special software other than text editor (Notepad is fine)
+- ⛔ Advanced gaming PC sultan spec
+
+---
+
+# HTML
+
+- open and close tag
+
+  ```html
+  <h1>Hello there!</h1>
+  <br />
+  <img src="https://github.com/mathdroid.png" />
+  ```
+
+---
+
+# HTML Demo
+
+https://localhost:5000
+
+---
+
+# CSS
+
+- syntaxes, basic styling
+
+  ```css
+  .heading {
+    color: lightblue;
+    font-size: 2rem;
+    margin: 0 auto;
+  }
+  ```
+
+  ```html
+  <h1 class="heading">I AM LIGHT BLUE</h1>
+  ```
+
+---
+
+# CSS Demo
+
+https://localhost:5000
+
+---
+
+# Javascript
+
+- functions
+- conditionals
+- array manipulations
+- let/const
+- ES6 stuff
+- DOM manipulations
+- etc
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+
+```js 1:4
+// function
+function add(a, b) {
+  return a + b;
+}
+```
+
+```js 6:7
+// function
+function add(a, b) {
+  return a + b;
+}
+
+add(2, 3);
+// 5
+```
+
+```js 6:13
+// function
+function add(a, b) {
+  return a + b;
+}
+
+function isPositiveSquareBelow10(num) {
+  // conditionals
+  if (num === 9 || num === 4 || num === 1) {
+    return true;
+  } else {
+    return false;
+  }
+}
+```
+
+```js 15:18
+// function
+function add(a, b) {
+  return a + b;
+}
+
+function isPositiveSquareBelow10(num) {
+  // conditionals
+  if (num === 9 || num === 4 || num === 1) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// arrays
+const colors = ["red", "blue", "orange"];
+const shirts = colors.map((color) => `${color} shirt`);
+// ['red shirt', 'blue shirt', 'orange shirt']
+```
+
+</CodeSurfer>
+
+
+---
+
+<SplitRight>
+
+
+<img src={image2} />
+
+<div style={{
+     textAlign: "initial"
+    }}>
+<CodeSurfer theme={vsDark}>
+
+
+```html
+<body>
+  <div id="root"></div>
+  <script type="text/javascript">
+    const rootElement = document.getElementById("root");
+    const element = document.createElement("div");
+    element.textContent = "Hello World";
+    element.className = "container";
+    rootElement.appendChild(element);
+  </script>
+</body>
+```
+
+</CodeSurfer>
+
+
+</div>
+
+
+</SplitRight>
+
+
+---
+
+# React
+
+---
+
+# What is React?
+
+## A JavaScript library for building user interfaces
+
+<Steps>
+
+
+- declarative
+
+- efficient
+
+- flexible
+
+</Steps>
+
+
+---
+
+# Previously
+
+- Lite Bites 6.0
+
+  - https://www.youtube.com/watch?v=0FlGxe0alDc
+
+---
+
+# React
+
+- Compose complex UIs from small and isolated pieces of code called “components”.
+
+- Instagram homepage
+  - Logo Link component
+  - Post display component
+    - Like button component
+    - Share button component
+  - Bottom nav component
+    - Nav links component
+
+---
+
+<SplitRight>
+
+
+<img src={image2} />
+
+<div style={{
+     textAlign: "initial"
+    }}>
+<CodeSurfer theme={vsDark}>
+
+
+```html
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.13.1/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js"></script>
+  <script type="text/javascript">
+    const rootElement = document.getElementById("root");
+    const element = React.createElement("div", {
+      className: "container",
+      children: "Hello World",
+    });
+    ReactDOM.render(element, rootElement);
+  </script>
+</body>
+```
+
+```diff 3,4
+
+```
+
+```diff 2,5:12
+
+```
+
+```diff 6:11
+
+```
+
+</CodeSurfer>
+
+
+</div>
+
+
+</SplitRight>
+
+
+---
+
+# That was not very easy (to write)
+
+---
+
+<SplitRight>
+
+
+<img src={image2} />
+
+<div style={{
+     textAlign: "initial"
+    }}>
+<CodeSurfer theme={vsDark}>
+
+
+```html
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.13.1/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    const rootElement = document.getElementById("root");
+    const element = <div className="container">Hello World</div>;
+    ReactDOM.render(element, rootElement);
+  </script>
+</body>
+```
+
+```diff 6:10
+
+```
+
+```diff 5
+
+```
+
+```diff 8
+
+```
+
+</CodeSurfer>
+
+
+</div>
+
+
+</SplitRight>
+
+
+---
+
+# JSX
+
+`<div className="container">Hello World</div>`
+
+```js
+React.createElement("div", {
+  className: "container",
+  children: "Hello World",
+});
+```
+
+- `className` not `class` (reserved keyword)
+
+---
+
+# JSX
+
+JSX comes with the full power of JavaScript. You can put any JavaScript expressions within braces inside JSX. Each React element is a JavaScript object that you can store in a variable or pass around in your program.
+
+---
+
+# Components
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+
+```html
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.13.1/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    const rootElement = document.getElementById("root");
+    const element = <div className="container">Hello World</div>;
+    ReactDOM.render(element, rootElement);
+  </script>
+</body>
+```
+
+```diff 8
+
+```
+
+```html
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.13.1/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    const rootElement = document.getElementById("root");
+
+    function Message({ children }) {
+      return <div className="message">{children}</div>;
+    }
+
+    const element = (
+      <div className="container">
+        <Message>Hello World</Message>
+        <Message>Goodbye World</Message>
+      </div>
+    );
+
+    ReactDOM.render(element, rootElement);
+  </script>
+</body>
+```
+
+```diff 9:11
+
+```
+
+```diff 15,16
+
+```
+
+</CodeSurfer>
+
+
+---
+
+<img src={image4} />
+
+---
+
+# Props
+
+- We met a props instance before.
+
+- Short of _properties_
+
+- Passing props is how information flows in React apps, from *parent*s to children.
+
+- Changing props in the parent causes the child component to re-render with the new props value.
+
+- CAN NOT and should not change props inside the component. To do it, you need `state`.
+
+```
+<ChildComponent />
+```
+
+```
+<ChildComponent color="green" />
+```
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+
+```html 9[22:33]
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.13.1/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    const rootElement = document.getElementById("root");
+
+    function Message({ children }) {
+      return <div className="message">{children}</div>;
+    }
+
+    const element = (
+      <div className="container">
+        <Message>Hello World</Message>
+        <Message>Goodbye World</Message>
+      </div>
+    );
+
+    ReactDOM.render(element, rootElement);
+  </script>
+</body>
+```
+
+```diff 10[39:48]
+
+```
+
+```diff 15[18:28],16[18:30]
+
+```
+
+</CodeSurfer>
+
+
+---
+
+# State
+
+- The difference from props is that `state` is directly initialized and managed by the component.
+
+- Can be derived from props.
+
+- Can be passed as props to a child component.
+
+---
+
+# Example
+
+---
+
+<CodeSurferColumns themes={[vsDark, vsDark, vsDark]} sizes={[2,1,2]}>
+
+
+<Step>
+
+
+```jsx title="Class"
+class Counter extends Component {
+  render() {
+    const count = 1;
+    return (
+      <div>
+        <button>Kurangi</button>
+        <h1>{count}</h1>
+        <button>Tambah</button>
+      </div>
+    );
+  }
+}
+```
+
+<div>
+
+
+</div>
+
+
+```jsx title="Function"
+function Counter() {
+  const count = 1;
+  return (
+    <div>
+      <button>Kurangi</button>
+      <h1>{count}</h1>
+      <button>Tambah</button>
+    </div>
+  );
+}
+```
+
+</Step>
+
+
+<Step>
+
+
+```jsx title="Class"
+class Counter extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 1,
+    };
+  }
+  render() {
+    const { count } = this.state;
+    return (
+      <div>
+        <button onClick={(_) => this.setState((c) => c - 1)}>Kurangi</button>
+        <h1>{count}</h1>
+        <button onClick={(_) => this.setState((c) => c + 1)}>Tambah</button>
+      </div>
+    );
+  }
+}
+```
+
+<MyComponent />
+
+```jsx title="Function"
+function Counter() {
+  const [count, setCount] = useState(1);
+  return (
+    <div>
+      <button onClick={(_) => setCount((c) => c - 1)}>Kurangi</button>
+      <h1>{count}</h1>
+      <button onClick={(_) => setCount((c) => c + 1)}>Tambah</button>
+    </div>
+  );
+}
+```
+
+</Step>
+
+
+</CodeSurferColumns>
+
+
+---
+
+# Class vs Function
+
+- Sama sama bisa akses props dan state
+- Pada functional component, state (dan beberapa hal lain) diakses melalui `hooks` (`useState`, etc)
+
+---
+
+# Event Handling
+
+Handling events with React elements is very similar to handling events on DOM elements. There are some syntax differences:
+
+- React events are named using camelCase, rather than lowercase.
+- With JSX you pass a function as the event handler, rather than a string.
+
+---
+
+# Conditional Rendering
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+
+```html
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.13.1/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    const rootElement = document.getElementById("root");
+
+    function UserGreeting(props) {
+      return <h1>Welcome back!</h1>;
+    }
+
+    function GuestGreeting(props) {
+      return <h1>Please sign up.</h1>;
+    }
+
+    function Greeting(props) {
+      const isLoggedIn = props.isLoggedIn;
+      if (isLoggedIn) {
+        return <UserGreeting />;
+      }
+      return <GuestGreeting />;
+    }
+
+    // change to true
+    const isLoggedIn = false;
+
+    const element = <Greeting isLoggedIn={isLoggedIn} />;
+
+    ReactDOM.render(element, rootElement);
+  </script>
+</body>
+```
+
+</CodeSurfer>
+
+
+---
+
+# Rendering list of items
+
+```js
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map((number) => number * 2);
+console.log(doubled); // [2, 4, 6, 8, 10]
+```
+
+```jsx
+const numbers = [1, 2, 3, 4, 5];
+const listItems = numbers.map((number) => <li>{number}</li>);
+```
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+
+```html
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.13.1/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    const rootElement = document.getElementById("root");
+
+    const numbers = [1, 2, 3, 4, 5];
+    const listItems = numbers.map((number) => <li>{number}</li>);
+
+    const element = <ul>{listItems}</ul>;
+
+    ReactDOM.render(element, rootElement);
+  </script>
+</body>
+```
+
+</CodeSurfer>
+
+
+---
+
+# Rendering list of items
+
+When rendering a list of items, you should provide a `key` prop to give the elements a stable identity
+
+---
+
+# Connecting to API
+
+<Steps>
+
+
+- Fetch/XHR
+
+- There are libraries to help manage this state
+
+  - `swr`
+
+  - `react-query`
+
+</Steps>
+
+
+---
+
+<CodeSurfer theme={vsDark}>
+
+
+```html
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.13.1/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.13.1/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script type="text/babel">
+    function MyComponent() {
+      const [error, setError] = useState(null);
+      const [isLoaded, setIsLoaded] = useState(false);
+      const [items, setItems] = useState([]);
+
+      // Note: the empty deps array [] means
+      // this useEffect will run once
+      // similar to componentDidMount()
+      useEffect(() => {
+        fetch("https://api.example.com/items")
+          .then((res) => res.json())
+          .then(
+            (result) => {
+              setIsLoaded(true);
+              setItems(result.items);
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+              setIsLoaded(true);
+              setError(error);
+            }
+          );
+      }, []);
+
+      if (error) {
+        return <div>Error: {error.message}</div>;
+      } else if (!isLoaded) {
+        return <div>Loading...</div>;
+      } else {
+        return (
+          <ul>
+            {items.map((item) => (
+              <li key={item.name}>
+                {item.name} {item.price}
+              </li>
+            ))}
+          </ul>
+        );
+      }
+    }
+
+    ReactDOM.render(MyComponent, rootElement);
+  </script>
+</body>
+```
+
+</CodeSurfer>
+
+
+---
+
+# Integrate with Instagram example
+
+---
+
+# Further Learnings
+
+- Forms
+
+- Advanced hooks
+
+- Context
+
+- Ref
+
+- Ecosystem
+
+  - Next vs Gatsby
+
+- Routers
+
+- etc
+
+---
+
+# Knowing what you don't know is as important as knowing things
+
+---
+
+# Thank you!
+
+- https://twitter.com/mathdroid
+- https://github.com/mathdroid/litebites10
+- https://mathdro.id/discord
